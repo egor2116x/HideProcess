@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestHideProcess", "TestHideProcess\TestHideProcess.vcxproj", "{44BEE7E7-D33D-4129-A99F-69044097AE34}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessHideLib", "ProcessHideLib\ProcessHideLib.vcxproj", "{B45908A0-994A-45DD-897E-526C492900AF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessHideHooks", "ProcessHideHooks\ProcessHideHooks.vcxproj", "{FD444F7E-468C-49E0-B390-9B37ADF19A7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,22 @@ Global
 		{44BEE7E7-D33D-4129-A99F-69044097AE34}.Release|x64.Build.0 = Release|x64
 		{44BEE7E7-D33D-4129-A99F-69044097AE34}.Release|x86.ActiveCfg = Release|Win32
 		{44BEE7E7-D33D-4129-A99F-69044097AE34}.Release|x86.Build.0 = Release|Win32
+		{B45908A0-994A-45DD-897E-526C492900AF}.Debug|x64.ActiveCfg = Debug|x64
+		{B45908A0-994A-45DD-897E-526C492900AF}.Debug|x64.Build.0 = Debug|x64
+		{B45908A0-994A-45DD-897E-526C492900AF}.Debug|x86.ActiveCfg = Debug|Win32
+		{B45908A0-994A-45DD-897E-526C492900AF}.Debug|x86.Build.0 = Debug|Win32
+		{B45908A0-994A-45DD-897E-526C492900AF}.Release|x64.ActiveCfg = Release|x64
+		{B45908A0-994A-45DD-897E-526C492900AF}.Release|x64.Build.0 = Release|x64
+		{B45908A0-994A-45DD-897E-526C492900AF}.Release|x86.ActiveCfg = Release|Win32
+		{B45908A0-994A-45DD-897E-526C492900AF}.Release|x86.Build.0 = Release|Win32
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Debug|x64.ActiveCfg = Debug|x64
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Debug|x64.Build.0 = Debug|x64
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Debug|x86.Build.0 = Debug|Win32
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x64.ActiveCfg = Release|x64
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x64.Build.0 = Release|x64
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x86.ActiveCfg = Release|Win32
+		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
