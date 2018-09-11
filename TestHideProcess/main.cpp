@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Api.h"
+#include <vector>
 
 enum class COMMANDS {INSTALL, UNINSTALL, SET_PROCESS_LIST, GET_PROCESS_LIST, SHOW_PROCESS_LIST, INJECT_DLL, UNKNOWN};
 
@@ -31,47 +31,6 @@ COMMANDS ParseUserInput(const std::wstring & userInput)
         return COMMANDS::INJECT_DLL;
     }
     return COMMANDS::UNKNOWN;
-}
-
-BOOL Install()
-{
-    std::wstring x86_DLL_directory = GetFullProcessPath();
-    x86_DLL_directory += L"\\hookDLL\\x86";
-    std::wstring x64_DLL_directory = GetFullProcessPath();
-    x64_DLL_directory += L"\\hookDLL\\x64";
-
-    if (!InstallHookDlls(x86_DLL_directory, x64_DLL_directory))
-    {
-        std::wcout << L"Install dlls failed" << std::endl;
-        return false;
-    }
-    std::wcout << L"Hook dlls successfully instaled" << std::endl;
-#ifdef _M_X64
-    HMODULE hModule = LoadLibrary(X64HookDllName);
-#else
-    HMODULE hModule = LoadLibrary(X86HookDllName);
-#endif
-
-    return (hModule == NULL);
-}
-
-BOOL Uninstall()
-{
-#ifdef _M_X64
-    HMODULE hModule = GetModuleHandle(X64HookDllName);
-#else
-    HMODULE hModule = GetModuleHandle(X86HookDllName);
-#endif
-
-    if (hModule == NULL)
-    {
-        std::wcout << L"Unloading dlls failed" << std::endl;
-        return false;
-    }
-    FreeLibrary(hModule);
-    std::wcout << L"Hook dlls successfully unloaded" << std::endl;
-
-    return UninstallHookDlls();
 }
 
 int main()

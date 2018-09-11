@@ -1,0 +1,20 @@
+import "wtypes.idl";
+
+[
+    uuid(61086D28-ED50-4A67-8542-34FE542A25D5),
+    version(1.0),
+]
+
+interface IHideProcess
+{
+    boolean Install([in] handle_t h1,
+                    [in, string] const wchar_t * dllX86Path, 
+                    [in, string] const wchar_t * dllX64Path);
+    boolean Uninstall([in] handle_t h1);
+    boolean SetProcessList([in] handle_t h1, 
+                           [in, string] const wchar_t * processList);
+    boolean GetProcessList([in] handle_t h1, 
+                           [in, out, ref] wchar_t * processList, 
+                           [in, out] long * size);
+    boolean InjectDll([in] handle_t h1);
+}

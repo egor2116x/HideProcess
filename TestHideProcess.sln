@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessHideLib", "ProcessHi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessHideHooks", "ProcessHideHooks\ProcessHideHooks.vcxproj", "{FD444F7E-468C-49E0-B390-9B37ADF19A7D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessHideSrv", "ProcessHideSrv\ProcessHideSrv.vcxproj", "{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x64.Build.0 = Release|x64
 		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x86.ActiveCfg = Release|Win32
 		{FD444F7E-468C-49E0-B390-9B37ADF19A7D}.Release|x86.Build.0 = Release|Win32
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Debug|x64.ActiveCfg = Debug|x64
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Debug|x64.Build.0 = Debug|x64
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Debug|x86.ActiveCfg = Debug|Win32
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Debug|x86.Build.0 = Debug|Win32
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Release|x64.ActiveCfg = Release|x64
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Release|x64.Build.0 = Release|x64
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Release|x86.ActiveCfg = Release|Win32
+		{AEEC9FBA-9A65-484A-92E6-9D1947DBEC91}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

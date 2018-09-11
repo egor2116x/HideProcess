@@ -89,14 +89,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ProcessHideLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(Platform)\$(ProjectName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>$(OutDir)$(Platform)\ProcessHideLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(Platform)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
@@ -151,9 +152,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessHideLib\ProcessHideLib.vcxproj">
-      <Project>{b45908a0-994a-45dd-897e-526c492900af}</Project>
-    </ProjectReference>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
