@@ -14,6 +14,7 @@ static const wchar_t* X64HookDllName = PROCESS_HIDE_X64_DLL;
 #define LOG_KEY_FILE_NAME L"HideProcessLog"
 #define LOG_FILE_NAME L"HideProcessLog.txt"
 #define LOG_SERVICE_NAME L"ProcessHideSrv"
+#define LOG_SERVICE_BIN_NAME L"ProcessHideSrv.exe"
 #define LOG_KEY_FLAGS L"LogFlags"
 
 // flags for messages filtering

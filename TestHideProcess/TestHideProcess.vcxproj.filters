@@ -13,13 +13,35 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="IDL">
+      <UniqueIdentifier>{0d732852-8479-4aa5-94d8-a68628720f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RPC">
+      <UniqueIdentifier>{e58fbfea-b037-45d6-b1b0-5df47b1c96ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RpcClientStub.c">
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="..\ProcessHideSrv\Service.idl">
+      <Filter>IDL</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RpcClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

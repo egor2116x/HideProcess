@@ -89,15 +89,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProcessHideSrv;..\ProcessHideLib</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(Platform)\$(ProjectName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)$(Platform)\ProcessHideLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(Platform)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
@@ -150,9 +149,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RpcClient.cpp" />
+    <ClCompile Include="RpcClientStub.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="..\ProcessHideSrv\Service.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RpcClient.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessHideLib\ProcessHideLib.vcxproj">
+      <Project>{b45908a0-994a-45dd-897e-526c492900af}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
