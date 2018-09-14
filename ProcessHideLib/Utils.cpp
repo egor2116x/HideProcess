@@ -1,5 +1,25 @@
 #include "Utils.h"
 
+std::wstring toLowerW(const std::wstring & str)
+{
+    std::wstring tmp = str;
+    for (auto & ch : tmp)
+    {
+        ch = std::towlower(ch);
+    }
+    return tmp;
+}
+
+std::string toLowerA(const std::string & str)
+{
+    std::string tmp = str;
+    for (auto & ch : tmp)
+    {
+        ch = std::tolower(ch);
+    }
+    return tmp;
+}
+
 std::wstring GetFullCurrentProcessPath()
 {
     DWORD dwResult = NO_ERROR;

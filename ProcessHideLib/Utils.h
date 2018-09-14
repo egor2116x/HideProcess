@@ -5,6 +5,8 @@
 std::wstring GetFullCurrentProcessPath();
 std::wstring GetFullCurrentProcessPathToFolder();
 std::wstring GetCurrentProcessName();
+std::wstring toLowerW(const std::wstring & str);
+std::string toLowerA(const std::string & str);
 
 std::string wstr2str(const std::wstring & str);
 std::wstring str2wstr(const std::string & str);

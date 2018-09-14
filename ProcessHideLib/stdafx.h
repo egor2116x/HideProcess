@@ -16,3 +16,7 @@
 #include <mutex>
 #include <iomanip>
 #include <sstream>
+#include <cctype>
+#include <cwctype>
+#include <string>
+

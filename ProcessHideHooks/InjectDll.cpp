@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "easyhook.h"
 #include "InjectDll.h"
+#include "TaskManagerDetector.h"
 
 extern HMODULE hCurrentModule;
 HHOOK g_hook = nullptr;
@@ -21,9 +22,12 @@ HookProc(
 
 bool InstallHooks()
 {
+    if (!TaskManagerDetector::GetInstance()->InstallHooks())
+    {
+        return false;
+    }
 
-
-    return false;
+    return true;
 }
 
 bool Start()
@@ -32,8 +36,9 @@ bool Start()
 
     if (g_hook == 0)
     {
-        return FALSE;
+        return false;
     }
+    return true;
 }
 
 

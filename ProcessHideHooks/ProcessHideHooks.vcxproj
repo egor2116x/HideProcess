@@ -92,11 +92,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PROCESSHIDEHOOKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(OutDir)$(Platform)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>..\ProcessHideLib</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>$(OutDir)$(Platform)\ProcessHideLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -173,6 +176,11 @@
     <ClInclude Include="InjectDll.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TaskManagerDetector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessHideLib\ProcessHideLib.vcxproj">
+      <Project>{b45908a0-994a-45dd-897e-526c492900af}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
