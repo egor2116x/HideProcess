@@ -4,6 +4,7 @@
 #include "ExceptionService.h"
 #include "RpcAllocator.h"
 #include "RpcGuards.h"
+#include "Service_h.h"
 
 std::unique_ptr<RpcClient> RpcClient::m_instance(nullptr);
 
@@ -20,27 +21,58 @@ std::unique_ptr<RpcClient>& RpcClient::GetInstance()
 
 bool RpcClient::Install(const std::wstring & dllX86Path, const std::wstring & dllX64Path)
 {
-    return false;
+    return ::Install(m_bindingHandle, dllX86Path.c_str(), dllX64Path.c_str());
 }
 
 bool RpcClient::Uninstall()
 {
-    return false;
+    return ::Uninstall(m_bindingHandle);
 }
 
 bool RpcClient::SetProcessList(const std::vector<std::wstring> & processList)
 {
-    return false;
+    std::wstring tmp;
+    for (const auto & processName : processList)
+    {
+        tmp += processName;
+        tmp += CONFIG_REGISTRY_PROCESS_HIDE_DELIMITER;
+    }
+
+    return ::SetProcessList(m_bindingHandle, tmp.c_str());
 }
 
 bool RpcClient::GetProcessList(std::vector<std::wstring> & processList)
 {
-    return false;
+    wchar_t * tmp;
+    long size = 0;
+
+    BOOL result = ::GetProcessList(m_bindingHandle, tmp, &size);
+    if (!result)
+    {
+        return false;
+    }
+
+    std::wstring list(tmp, size);
+    if (list.empty())
+    {
+        return false;
+    }
+
+    size_t idx = 0;
+    std::wstring::size_type pos = list.find(CONFIG_REGISTRY_PROCESS_HIDE_DELIMITER, idx);
+    while (pos != std::wstring::npos)
+    {
+        processList.push_back(list.substr(idx, pos));
+        idx = pos + 1;
+        pos = list.find(CONFIG_REGISTRY_PROCESS_HIDE_DELIMITER, idx);
+    }
+    
+    return true;
 }
 
 bool RpcClient::InjectDll()
 {
-    return false;
+    return ::InjectDll(m_bindingHandle);
 }
 
 RpcClient::RpcClient(const std::wstring & endpoint) : m_bindingHandle(NULL)
