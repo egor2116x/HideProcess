@@ -3,17 +3,21 @@
 #include "Utils.h"
 #include "SCmanagerWraper.h"
 
-enum class COMMANDS {INSTALL, UNINSTALL, START, STOP, SET_PROCESS_LIST, GET_PROCESS_LIST, SHOW_PROCESS_LIST, INJECT_DLL, UNKNOWN};
+enum class COMMANDS {INSTALL, INSTALL_SRV, UNINSTALL, START_SRV, STOP_SRV, SET_PROCESS_LIST, GET_PROCESS_LIST, SHOW_PROCESS_LIST, INJECT_DLL, UNKNOWN};
 
 COMMANDS ParseUserInput(const std::wstring & userInput)
 {
-    if (userInput.compare(L"install") == 0)
+    if (userInput.compare(L"install srv") == 0)
     {
-        return COMMANDS::INSTALL;
+        return COMMANDS::INSTALL_SRV;
     }
     else if (userInput.compare(L"uninstall") == 0)
     {
         return COMMANDS::UNINSTALL;
+    }
+    else if (userInput.compare(L"install") == 0)
+    {
+        return COMMANDS::INSTALL;
     }
     else if (userInput.compare(L"set") == 0)
     {
@@ -31,13 +35,13 @@ COMMANDS ParseUserInput(const std::wstring & userInput)
     {
         return COMMANDS::INJECT_DLL;
     }
-    else if (userInput.compare(L"start") == 0)
+    else if (userInput.compare(L"start srv") == 0)
     {
-        return COMMANDS::START;
+        return COMMANDS::START_SRV;
     }
-    else if (userInput.compare(L"stop") == 0)
+    else if (userInput.compare(L"stop srv") == 0)
     {
-        return COMMANDS::STOP;
+        return COMMANDS::STOP_SRV;
     }
 
     return COMMANDS::UNKNOWN;
@@ -63,19 +67,8 @@ int main()
 
         switch(ParseUserInput(userInput))
         {
-        case COMMANDS::INSTALL: 
+        case COMMANDS::INSTALL_SRV:
         {
-            // dll install
-            std::wstring x86_DLL_directory = GetFullCurrentProcessPathToFolder();
-            x86_DLL_directory += L"\\hookDLL\\x86";
-            std::wstring x64_DLL_directory = GetFullCurrentProcessPathToFolder();
-            x64_DLL_directory += L"\\hookDLL\\x64";
-            if (!client->Install(x86_DLL_directory, x64_DLL_directory))
-            {
-                std::wcout << L"Loading dlls failed" << std::endl;
-            }
-            std::wcout << L"Hook dlls successfully loaded" << std::endl;
-
             //service install
             service.m_h = ::OpenService(scManager.GetSCManagerHandle(), LOG_SERVICE_NAME, SERVICE_QUERY_STATUS);
             if (service.m_h != nullptr)
@@ -96,12 +89,26 @@ int main()
                 SERVICE_DEMAND_START,
                 true);
             SendToConsoleIf<IF_DEBUG>(std::wcout, L"Service was installed successfully");
+            break;
+        }
+        case COMMANDS::INSTALL: 
+        {
+            // dll install
+            std::wstring x86_DLL_directory = GetFullCurrentProcessPathToFolder();
+            x86_DLL_directory += L"\\hookDLL\\x86";
+            std::wstring x64_DLL_directory = GetFullCurrentProcessPathToFolder();
+            x64_DLL_directory += L"\\hookDLL\\x64";
+            if (!client->Install(x86_DLL_directory, x64_DLL_directory))
+            {
+                std::wcout << L"Loading dlls failed" << std::endl;
+            }
+            std::wcout << L"Hook dlls successfully loaded" << std::endl;
         }
             break;
-        case COMMANDS::START:
+        case COMMANDS::START_SRV:
             scManager.StartService(LOG_SERVICE_NAME);
             break;
-        case COMMANDS::STOP:
+        case COMMANDS::STOP_SRV:
             scManager.StopService(LOG_SERVICE_NAME);
             break;
         case COMMANDS::UNINSTALL: 
