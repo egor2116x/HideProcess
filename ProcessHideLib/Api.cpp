@@ -296,10 +296,6 @@ BOOL InstallDllToSysWow64(const std::wstring & dllSourceDirPath)
 
 BOOL InstallHookDlls(const std::wstring & dllSourceDirPathX86, const std::wstring & dllSourceDirPathX64)
 {
-    std::string command = "Reg add ";
-    command += CONFIG_REGISTRY_USER_MODE_SUBKEY_S;
-    system(command.c_str());
-
     if (!GetSystemDirPathWow64().empty()) // if windows_x64
     {
         return (InstallDllToSys32(dllSourceDirPathX64, 64) &&

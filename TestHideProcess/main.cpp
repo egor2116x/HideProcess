@@ -2,6 +2,7 @@
 #include "RpcClient.h"
 #include "Utils.h"
 #include "SCmanagerWraper.h"
+#include "LogWriter.h"
 
 enum class COMMANDS {INSTALL, INSTALL_SRV, UNINSTALL, START_SRV, STOP_SRV, SET_PROCESS_LIST, GET_PROCESS_LIST, SHOW_PROCESS_LIST, INJECT_DLL, UNKNOWN};
 
@@ -62,6 +63,7 @@ int main()
         if (userInput.empty())
         {
             std::wcout << L"Incorrect command. Try again" << std::endl;
+            std::wcout << L">> ";
             continue;
         }
 
@@ -107,9 +109,11 @@ int main()
             break;
         case COMMANDS::START_SRV:
             scManager.StartService(LOG_SERVICE_NAME);
+            SendToConsoleIf<IF_DEBUG>(std::wcout, L"Service was started successfully");
             break;
         case COMMANDS::STOP_SRV:
             scManager.StopService(LOG_SERVICE_NAME);
+            SendToConsoleIf<IF_DEBUG>(std::wcout, L"Service was stopped successfully");
             break;
         case COMMANDS::UNINSTALL: 
             if (!client->Uninstall())
@@ -151,6 +155,7 @@ int main()
         }
 
         userInput.clear();
+        std::wcout << L">> ";
     }
 
     return 0;

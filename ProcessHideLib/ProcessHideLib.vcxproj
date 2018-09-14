@@ -22,6 +22,7 @@
     <ClInclude Include="Api.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="ExceptionService.h" />
+    <ClInclude Include="LogWriter.h" />
     <ClInclude Include="RpcAllocator.h" />
     <ClInclude Include="RpcGuards.h" />
     <ClInclude Include="RpcUtils.h" />
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Api.cpp" />
+    <ClCompile Include="LogWriter.cpp" />
     <ClCompile Include="RpcAllocator.cpp" />
     <ClCompile Include="RpcUtils.cpp" />
     <ClCompile Include="stdafx.cpp" />

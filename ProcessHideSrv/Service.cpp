@@ -76,6 +76,7 @@ unsigned int WINAPI Service::WorkerThread(PVOID context)
     }
     catch (const RpcServerError & e)
     {
+        LogWriter::GetInstance()->Print(LOG_FATAL, L"WorkerThread\n", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
         return 1;
     }
 

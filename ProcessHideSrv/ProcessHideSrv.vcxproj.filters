@@ -33,9 +33,6 @@
     <ClInclude Include="RpcServer.h">
       <Filter>RPC</Filter>
     </ClInclude>
-    <ClInclude Include="LogWriter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -52,9 +49,6 @@
     </ClCompile>
     <ClCompile Include="RpcServerStub.c">
       <Filter>RPC</Filter>
-    </ClCompile>
-    <ClCompile Include="LogWriter.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

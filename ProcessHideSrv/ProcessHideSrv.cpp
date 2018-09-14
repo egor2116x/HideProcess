@@ -14,9 +14,8 @@ int wmain(int argc, TCHAR* argv[])
     SetUnhandledExceptionFilter(TerminateUnhandledExceptionFilter);
     auto handle = std::set_unexpected(TerminateStdUnhandledException);
     UNREFERENCED_PARAMETER(handle);
-
+    LogWriter::GetInstance()->Print(LOG_FATAL, L"wmain\n", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
     SERVICE_TABLE_ENTRY dispatchTable[] = { { LOG_SERVICE_NAME, (LPSERVICE_MAIN_FUNCTION)Service::ServiceMain },{ NULL, NULL } };
-    std::future<void> futureThread;
     try
     {
         if (!::StartServiceCtrlDispatcher(dispatchTable))
