@@ -1,6 +1,9 @@
 #include "RpcClient.h"
 #include "Utils.h"
+#include "RpcUtils.h"
 #include "ExceptionService.h"
+#include "RpcAllocator.h"
+#include "RpcGuards.h"
 
 std::unique_ptr<RpcClient> RpcClient::m_instance(nullptr);
 

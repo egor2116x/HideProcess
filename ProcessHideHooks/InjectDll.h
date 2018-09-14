@@ -6,4 +6,5 @@
 #define PROCESSHIDELIBRARY_EXPORTS __declspec(dllimport)   
 #endif 
 
+bool PROCESSHIDELIBRARY_EXPORTS InstallHooks();
 bool PROCESSHIDELIBRARY_EXPORTS Start();

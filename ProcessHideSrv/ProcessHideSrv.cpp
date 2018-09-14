@@ -2,10 +2,10 @@
 //
 #include "stdafx.h"
 #include "Utils.h"
-#include "SCmanagerWraper.h"
 #include "LogWriter.h"
 #include "Utils.h"
 #include "Service.h"
+#include "ExceptionService.h"
 
 
 int wmain(int argc, TCHAR* argv[])
@@ -19,20 +19,13 @@ int wmain(int argc, TCHAR* argv[])
     std::future<void> futureThread;
     try
     {
-        SCManagerWrapper scManager;
-        CServiceHandle service;
-        service.m_h = ::OpenService(scManager.GetSCManagerHandle(), LOG_SERVICE_NAME, SERVICE_QUERY_STATUS);
-        if (service.m_h != nullptr)
+        if (!::StartServiceCtrlDispatcher(dispatchTable))
         {
-            if (!::StartServiceCtrlDispatcher(dispatchTable))
-            {
                 std::wstring mes(L"StartServiceCtrlDispatcher error : ");
                 mes += std::to_wstring(static_cast<unsigned long>(GetLastError()));
                 mes += L'\n';
                 LogWriter::GetInstance()->Print(LOG_FATAL, mes.c_str(), GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
-            }
-        }       
-
+        }    
     }
     catch (const ServiceError & e)
     {

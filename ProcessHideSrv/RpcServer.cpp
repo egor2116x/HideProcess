@@ -4,6 +4,7 @@
 #include "Api.h"
 #include "LogWriter.h"
 #include "RpcAllocator.h"
+#include "RpcUtils.h"
 
 
 void RpcServer::Init()

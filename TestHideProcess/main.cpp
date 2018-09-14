@@ -132,19 +132,12 @@ int main()
             }
             break;
         case COMMANDS::INJECT_DLL:
+        if (!client->InjectDll())
         {
-            bool(WINAPI * CurStart)() = nullptr;
-#ifdef _M_X64
-            CurStart = (bool(WINAPI *)())GetProcAddress(GetModuleHandle(X64HookDllName), "?Start@@YA_NXZ");
-#else
-            CurStart = (bool(WINAPI *)())GetProcAddress(GetModuleHandle(X86HookDllName), "?Start@@YA_NXZ");
-#endif
-            //
-            // Inject support dll
-            //
-            if (CurStart != nullptr)
-                CurStart();
+             std::wcout << L"Failed to inject dll" << std::endl;
         }
+        std::wcout << L"Inject dll was successful" << std::endl;
+        break;
         break;
         default:
             std::wcout << L"Incorrect command. Try again" << std::endl;

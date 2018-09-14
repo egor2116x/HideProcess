@@ -27,12 +27,12 @@
     <ClCompile Include="RpcClientStub.c">
       <Filter>RPC</Filter>
     </ClCompile>
-    <ClCompile Include="RpcClient.cpp">
+    <ClCompile Include="SCmanagerWraper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="RpcClient.cpp">
+      <Filter>RPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="..\ProcessHideSrv\Service.idl">
@@ -40,8 +40,11 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RpcClient.h">
+    <ClInclude Include="SCmanagerWraper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcClient.h">
+      <Filter>RPC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

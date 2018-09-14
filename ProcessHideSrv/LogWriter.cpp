@@ -1,5 +1,6 @@
 #include "LogWriter.h"
 #include "Utils.h"
+#include "ExceptionService.h"
 
 LogWriter * LogWriter::m_instance = nullptr;
 

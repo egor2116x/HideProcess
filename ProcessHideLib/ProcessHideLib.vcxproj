@@ -21,9 +21,19 @@
   <ItemGroup>
     <ClInclude Include="Api.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="ExceptionService.h" />
+    <ClInclude Include="RpcAllocator.h" />
+    <ClInclude Include="RpcGuards.h" />
+    <ClInclude Include="RpcUtils.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Api.cpp" />
+    <ClCompile Include="RpcAllocator.cpp" />
+    <ClCompile Include="RpcUtils.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B45908A0-994A-45DD-897E-526C492900AF}</ProjectGuid>
@@ -89,13 +99,14 @@
       <ProgramDataBaseFileName>$(OutDir)$(Platform)\$(ProjectName).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CallingConvention>StdCall</CallingConvention>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>Dbghelp.lib;Rpcrt4.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

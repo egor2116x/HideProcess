@@ -1,5 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
+#include "InjectDll.h"
 
 HMODULE hCurrentModule = nullptr;
 
@@ -11,7 +12,19 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
+    {
         hCurrentModule = hModule;
+        HMODULE hNtDll = LoadLibraryA("ntdll.dll");
+        if (hNtDll == nullptr)
+        {
+            return FALSE;
+        }
+
+        if (!InstallHooks())
+        {
+            return FALSE;
+        }
+    }
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:

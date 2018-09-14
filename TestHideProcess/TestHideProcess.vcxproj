@@ -91,6 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\ProcessHideSrv;..\ProcessHideLib</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(Platform)\$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,15 +154,14 @@
     <ClCompile Include="RpcClientStub.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="SCmanagerWraper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="..\ProcessHideSrv\Service.idl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RpcClient.h" />
+    <ClInclude Include="SCmanagerWraper.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessHideLib\ProcessHideLib.vcxproj">

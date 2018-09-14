@@ -164,6 +164,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="InjectDll.cpp" />
+    <ClCompile Include="TaskManagerDetector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -171,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="InjectDll.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TaskManagerDetector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

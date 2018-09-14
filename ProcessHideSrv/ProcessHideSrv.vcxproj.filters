@@ -27,19 +27,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SCmanagerWraper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Service.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcGuards.h">
-      <Filter>RPC</Filter>
-    </ClInclude>
-    <ClInclude Include="ExceptionService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RpcServer.h">
@@ -48,21 +36,12 @@
     <ClInclude Include="LogWriter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RpcAllocator.h">
-      <Filter>RPC</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProcessHideSrv.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SCmanagerWraper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Service.cpp">
@@ -76,9 +55,6 @@
     </ClCompile>
     <ClCompile Include="LogWriter.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpcAllocator.cpp">
-      <Filter>RPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
