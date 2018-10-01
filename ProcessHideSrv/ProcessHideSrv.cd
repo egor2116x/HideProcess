@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Service">
+    <Position X="0.5" Y="3.25" Width="7.25" />
+    <TypeIdentifier>
+      <HashCode>AAEEBAAAAAAAAAAIAABAAAAABAAIQCAIIAAgIAAAQEI=</HashCode>
+      <FileName>Service.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RpcServer">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAIAACAAAAAAEAAIAAAAAAAAAQAAAAAAAACEAAAAAA=</HashCode>
+      <FileName>RpcServer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

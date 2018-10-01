@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CServiceHandle">
+    <Position X="0.5" Y="4" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAABAAIAAAAAAAAAQIAAAAAAAAAhAACAAAA=</HashCode>
+      <FileName>SCmanagerWraper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCManagerWrapper">
+    <Position X="0.5" Y="0.5" Width="11.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAACEACAAAAQAAAAAEEBAAAEAAEAAABAA=</HashCode>
+      <FileName>SCmanagerWraper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RpcClient">
+    <Position X="4.25" Y="4" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>EAABAAAAACAAAAAEAAAAAAAABAACAAAIEIAgAAACAAA=</HashCode>
+      <FileName>RpcClient.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="COMMANDS">
+    <Position X="9" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAABAAABAAAAAAAAAAQCRAAQAAAAgAAAAAAAA=</HashCode>
+      <FileName>main.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
