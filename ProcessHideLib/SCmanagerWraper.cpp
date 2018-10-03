@@ -131,7 +131,7 @@ void SCManagerWrapper::StartService(LPCTSTR lpServiceName)
     service.m_h = ::OpenService(m_ScHandle, lpServiceName, SERVICE_START);
     THROW_LAST_ERROR_IF(NULL == service.m_h, "OpenService failed");
 
-    THROW_LAST_ERROR_IF(!::StartServiceW(service, 0, nullptr), "StartService failed");
+    THROW_LAST_ERROR_IF(!::StartService(service, 0, NULL), "StartService failed");
 }
 
 void SCManagerWrapper::StopService(LPCTSTR lpServiceName)

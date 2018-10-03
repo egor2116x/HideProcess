@@ -4,13 +4,22 @@
 #include <Windows.h>
 #include "Common.h"
 
-// common 
-std::wstring GetFullProcessPath();
+namespace Api
+{
+    // common 
+    //std::wstring GetFullProcessPath();
 
-// hook dlls management functions
-BOOL InstallHookDlls(const std::wstring & dllSourceDirPathX86, const std::wstring & dllSourceDirPathX64);
-BOOL UninstallHookDlls();
+    // hook dlls management functions
+    BOOL Install(const std::wstring & dllSourceDirPathX86, const std::wstring & dllSourceDirPathX64);
+    BOOL Uninstall();
+    BOOL Inject();
 
-//process/service managament function list
-bool SetHideProcessList(const std::vector<std::wstring> & processList);
-bool GetHideProcessList(std::vector<std::wstring> & processList);
+    //service managament function list
+    //gen exception std::runtime_error
+    bool installSrv();
+    void startSrv();
+    void stopSrv();
+
+    bool SetHideProcessList(const std::vector<std::wstring> & processList);
+    bool GetHideProcessList(std::vector<std::wstring> & processList);
+}

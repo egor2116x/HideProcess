@@ -45,39 +45,15 @@ void RpcServer::Wait()
 extern "C"
 boolean Install(handle_t h1, const wchar_t * dllX86Path, const wchar_t * dllX64Path)
 {
-    LogWriter::GetInstance()->Print(LOG_FATAL, L"Install hook dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
-
-    BOOL result = InstallHookDlls(dllX86Path, dllX64Path);
-
-#ifdef _M_X64
-    HMODULE hModule = LoadLibrary(X64HookDllName);
-#else
-    HMODULE hModule = LoadLibrary(X86HookDllName);
-#endif
-    if (hModule == nullptr)
-    {
-        result = FALSE;
-    }
-    return result;
+    LogWriter::GetInstance()->Print(LOG_FATAL, L"Install hook dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());  
+    return Api::Install(dllX86Path, dllX64Path);
 }
 
 extern "C"
 boolean Uninstall(handle_t h1)
 {
     LogWriter::GetInstance()->Print(LOG_FATAL, L"Uninstall hook dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
-#ifdef _M_X64
-    HMODULE hModule = GetModuleHandle(X64HookDllName);
-#else
-    HMODULE hModule = GetModuleHandle(X86HookDllName);
-#endif
-
-    if (hModule == nullptr)
-    {
-        std::wcout << L"Unloading dlls failed" << std::endl;
-        return false;
-    }
-    FreeLibrary(hModule);
-    return UninstallHookDlls();
+    return Api::Uninstall();
 }
 
 extern "C"
@@ -100,7 +76,7 @@ boolean SetProcessList(handle_t h1, const wchar_t * processList)
         return false;
     }
     
-    return SetHideProcessList(processListArr);
+    return Api::SetHideProcessList(processListArr);
 }
 
 extern "C"
@@ -110,7 +86,7 @@ boolean GetProcessList(handle_t h1, wchar_t * processList, long * size)
     std::wstring tmp;
 
     std::vector<std::wstring> processListArr;
-    BOOL result = GetHideProcessList(processListArr);
+    BOOL result = Api::GetHideProcessList(processListArr);
 
     if (!result || processListArr.empty())
     {
@@ -134,21 +110,5 @@ extern "C"
 boolean InjectDll(handle_t h1)
 {
     LogWriter::GetInstance()->Print(LOG_FATAL, L"Inject dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
-    bool(WINAPI * CurStart)() = nullptr;
-#ifdef _M_X64
-    CurStart = (bool(WINAPI *)())GetProcAddress(GetModuleHandle(X64HookDllName), "?Start@@YA_NXZ");
-#else
-    CurStart = (bool(WINAPI *)())GetProcAddress(GetModuleHandle(X86HookDllName), "?Start@@YA_NXZ");
-#endif
-    //
-    // Inject support dll
-    //
-    BOOL result = FALSE;
-    if (CurStart != nullptr)
-    {
-        CurStart();
-        result = TRUE;
-    }
-
-    return result;
+    return Api::Inject();
 }

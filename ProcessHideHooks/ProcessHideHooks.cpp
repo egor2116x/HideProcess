@@ -1,8 +1,5 @@
-// ProcessHideHooks.cpp : Defines the exported functions for the DLL application.
-//
 #include "stdafx.h"
-#include "easyhook.h"
-#include "InjectDll.h"
+#include "ProcessHideHooks.h"
 #include "TaskManagerDetector.h"
 
 extern HMODULE hCurrentModule;
@@ -40,9 +37,6 @@ bool Start()
     }
     return true;
 }
-
-
-
 
 
 

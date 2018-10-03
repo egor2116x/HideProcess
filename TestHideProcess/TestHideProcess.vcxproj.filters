@@ -24,15 +24,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RpcClientStub.c">
-      <Filter>RPC</Filter>
-    </ClCompile>
-    <ClCompile Include="SCmanagerWraper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RpcClient.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
+    <ClCompile Include="RpcClientStub.c">
+      <Filter>RPC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RpcClient.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="..\ProcessHideSrv\Service.idl">
@@ -40,11 +42,6 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SCmanagerWraper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcClient.h">
-      <Filter>RPC</Filter>
-    </ClInclude>
+    <None Include="TestHideProcess.cd" />
   </ItemGroup>
 </Project>

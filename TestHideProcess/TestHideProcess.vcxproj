@@ -159,22 +159,21 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RpcClient.cpp" />
-    <ClCompile Include="RpcClientStub.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
-    </ClCompile>
-    <ClCompile Include="SCmanagerWraper.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Midl Include="..\ProcessHideSrv\Service.idl" />
+    <ClCompile Include="RpcClientStub.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RpcClient.h" />
-    <ClInclude Include="SCmanagerWraper.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessHideLib\ProcessHideLib.vcxproj">
       <Project>{b45908a0-994a-45dd-897e-526c492900af}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestHideProcess.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="..\ProcessHideSrv\Service.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

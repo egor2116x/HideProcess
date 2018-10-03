@@ -52,6 +52,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ProcessHideSrv.cd" />
+  </ItemGroup>
+  <ItemGroup>
     <Midl Include="Service.idl">
       <Filter>IDL</Filter>
     </Midl>
