@@ -19,15 +19,11 @@ typedef struct _MY_SYSTEM_PROCESS_INFORMATION
     HANDLE                  InheritedFromProcessId;
 } MY_SYSTEM_PROCESS_INFORMATION, *PMY_SYSTEM_PROCESS_INFORMATION;
 
-NTSTATUS(__stdcall * CurNtQuerySystemInformation)(
+typedef NTSTATUS(__stdcall * CurNtQuerySystemInformation)(
     IN SYSTEM_INFORMATION_CLASS SystemInformationClass,
     OUT PVOID SystemInformation,
     IN ULONG SystemInformationLength,
-    OUT PULONG ReturnLength OPTIONAL) = nullptr;
-
-DWORD ACLEntriesTimedNtQuerySystemInformation[1] = { (DWORD)-1 };
-HOOK_TRACE_INFO g_hTimedNtQuerySystemInformationHook = { NULL };
-
+    OUT PULONG ReturnLength OPTIONAL);
 
 std::unique_ptr<TaskManagerDetector> & TaskManagerDetector::GetInstance()
 {
@@ -40,17 +36,12 @@ std::unique_ptr<TaskManagerDetector> & TaskManagerDetector::GetInstance()
 
 bool TaskManagerDetector::InstallHooks()
 {
-    CurNtQuerySystemInformation = (NTSTATUS(WINAPI *)(SYSTEM_INFORMATION_CLASS, PVOID, ULONG, PULONG))GetProcAddress(GetModuleHandle(L"ntdll.dll"), "NtQuerySystemInformation");
-    if (CurNtQuerySystemInformation && LhInstallHook(
-        (void*)CurNtQuerySystemInformation,
-        (void*)TimedNtQuerySystemInformation,
-        NULL,
-        &g_hTimedNtQuerySystemInformationHook) == 0)
+    CurNtQuerySystemInformation trueNtQuerySystemInformation = (CurNtQuerySystemInformation)GetProcAddress(GetModuleHandle(L"ntdll.dll"), "NtQuerySystemInformation");
+    if (trueNtQuerySystemInformation && Mhook_SetHook((PVOID *)&trueNtQuerySystemInformation, &TaskManagerDetector::TimedNtQuerySystemInformation))
     {
-        LhSetExclusiveACL(ACLEntriesTimedNtQuerySystemInformation, 1, &g_hTimedNtQuerySystemInformationHook);
+        return false;
     }
-    
-    return false;
+    return true;
 }
 
 NTSTATUS TaskManagerDetector::TimedNtQuerySystemInformation(IN SYSTEM_INFORMATION_CLASS SystemInformationClass, OUT PVOID SystemInformation, IN ULONG SystemInformationLength, OUT PULONG ReturnLength OPTIONAL)

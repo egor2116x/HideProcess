@@ -14,10 +14,17 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
 
-        if (((hNtDll = LoadLibraryA("ntdll.dll")) == NULL) )
+        if ((hNtDll = LoadLibraryA("ntdll.dll")) == NULL)
         {
             return FALSE;
         }
+
+        /* hCurrentModule = hModule;        
+        if (!InstallHooks())
+        {
+        return FALSE;
+        }*/
+
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:

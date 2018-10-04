@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="mhooks">
+      <UniqueIdentifier>{77172d46-5586-4763-9447-2b2ca0a2c749}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,6 +33,24 @@
     <ClInclude Include="TaskManagerDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mhook-master\mhook-lib\mhook.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
+    <ClInclude Include="mhook-master\disasm-lib\cpu.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
+    <ClInclude Include="mhook-master\disasm-lib\disasm.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
+    <ClInclude Include="mhook-master\disasm-lib\disasm_x86.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
+    <ClInclude Include="mhook-master\disasm-lib\disasm_x86_tables.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
+    <ClInclude Include="mhook-master\disasm-lib\misc.h">
+      <Filter>mhooks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -44,8 +65,17 @@
     <ClCompile Include="TaskManagerDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="mhook-master\mhook-lib\mhook.cpp">
+      <Filter>mhooks</Filter>
+    </ClCompile>
+    <ClCompile Include="mhook-master\disasm-lib\cpu.c">
+      <Filter>mhooks</Filter>
+    </ClCompile>
+    <ClCompile Include="mhook-master\disasm-lib\disasm.c">
+      <Filter>mhooks</Filter>
+    </ClCompile>
+    <ClCompile Include="mhook-master\disasm-lib\disasm_x86.c">
+      <Filter>mhooks</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

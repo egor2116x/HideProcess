@@ -14,7 +14,7 @@
 #include <winternl.h>
 #include <vector>
 #include <string>
-#include "easyhook.h"
+#include "mhook-master\mhook-lib\mhook.h"
 
 
 
