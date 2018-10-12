@@ -1,9 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-// NtQuerySystemInformation(SystemProcessInformation, 0x000002950049edd0, 307200, 0x000000a71577fa60)	STATUS_SUCCESS
-
-
 class TaskManagerDetector
 {
 public:
@@ -15,10 +12,10 @@ private:
     TaskManagerDetector(const TaskManagerDetector &&) = delete;
     TaskManagerDetector & operator=(const TaskManagerDetector &) = delete;
     TaskManagerDetector & operator=(const TaskManagerDetector &&) = delete;
-    static NTSTATUS WINAPI TimedNtQuerySystemInformation(IN SYSTEM_INFORMATION_CLASS SystemInformationClass,
-                                                         OUT PVOID SystemInformation,
-                                                         IN ULONG SystemInformationLength,
-                                                         OUT PULONG ReturnLength OPTIONAL);
+    static NTSTATUS WINAPI TimedNtQuerySystemInformation(SYSTEM_INFORMATION_CLASS SystemInformationClass,
+                                                         PVOID SystemInformation,
+                                                         ULONG SystemInformationLength,
+                                                         PULONG ReturnLength);
 private:
     static std::unique_ptr<TaskManagerDetector> m_instance;
 };

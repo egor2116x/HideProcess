@@ -1,7 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-
 class LogWriter
 {
 public:
@@ -30,4 +29,6 @@ private:
     std::wstring m_fPath;
     std::mutex m_mtx;
 };
+
+#define LOG_PRINT(message) LogWriter::GetInstance()->Print(LOG_FATAL, message, GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName()); 
 

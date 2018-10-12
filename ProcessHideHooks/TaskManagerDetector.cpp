@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TaskManagerDetector.h"
-//#include "..\ProcessHideLib\Api.h"
-//#include "..\ProcessHideLib\Utils.h"
+#include "Utils.h"
+#include "LogWriter.h"
 
 std::unique_ptr<TaskManagerDetector> TaskManagerDetector::m_instance(nullptr);
 
@@ -25,6 +25,8 @@ typedef NTSTATUS(__stdcall * CurNtQuerySystemInformation)(
     IN ULONG SystemInformationLength,
     OUT PULONG ReturnLength OPTIONAL);
 
+CurNtQuerySystemInformation trueNtQuerySystemInformation = nullptr;
+
 std::unique_ptr<TaskManagerDetector> & TaskManagerDetector::GetInstance()
 {
     if (m_instance.get() == nullptr)
@@ -37,16 +39,17 @@ std::unique_ptr<TaskManagerDetector> & TaskManagerDetector::GetInstance()
 bool TaskManagerDetector::InstallHooks()
 {
     CurNtQuerySystemInformation trueNtQuerySystemInformation = (CurNtQuerySystemInformation)GetProcAddress(GetModuleHandle(L"ntdll.dll"), "NtQuerySystemInformation");
-    if (trueNtQuerySystemInformation && Mhook_SetHook((PVOID *)&trueNtQuerySystemInformation, &TaskManagerDetector::TimedNtQuerySystemInformation))
+    if (!trueNtQuerySystemInformation || Mhook_SetHook((PVOID *)&trueNtQuerySystemInformation, &TaskManagerDetector::TimedNtQuerySystemInformation))
     {
         return false;
     }
+    LOG_PRINT(L"NtQuerySystemInformation successfuly hooked");
     return true;
 }
 
-NTSTATUS TaskManagerDetector::TimedNtQuerySystemInformation(IN SYSTEM_INFORMATION_CLASS SystemInformationClass, OUT PVOID SystemInformation, IN ULONG SystemInformationLength, OUT PULONG ReturnLength OPTIONAL)
+NTSTATUS TaskManagerDetector::TimedNtQuerySystemInformation(SYSTEM_INFORMATION_CLASS SystemInformationClass, PVOID SystemInformation, ULONG SystemInformationLength, PULONG ReturnLength)
 {
-   /* NTSTATUS status = CurNtQuerySystemInformation(SystemInformationClass, SystemInformation, SystemInformationLength, ReturnLength);
+    NTSTATUS status = trueNtQuerySystemInformation(SystemInformationClass, SystemInformation, SystemInformationLength, ReturnLength);
     PMY_SYSTEM_PROCESS_INFORMATION pCurrent = NULL;
     PMY_SYSTEM_PROCESS_INFORMATION pNext = NULL;
     bool findProcess = false;
@@ -55,11 +58,14 @@ NTSTATUS TaskManagerDetector::TimedNtQuerySystemInformation(IN SYSTEM_INFORMATIO
 
     if (NT_SUCCESS(status) && SystemInformationClass == SystemProcessInformation)
     {
-        Api::GetHideProcessList(processList);
+        if (!LoadMultiString(CONFIG_REGISTRY_PROCESS_HIDE, processList))
+        {
+            return status;
+        }
         pCurrent = reinterpret_cast<PMY_SYSTEM_PROCESS_INFORMATION>(SystemInformation);
         std::wstring imageName;
-        while(pCurrent != 0)
-        {    
+        while (pCurrent != 0)
+        {
             pNext = reinterpret_cast<PMY_SYSTEM_PROCESS_INFORMATION>((reinterpret_cast<PUCHAR>(pCurrent + pCurrent->NextEntryOffset)));
             imageName = std::wstring(pCurrent->ImageName.Buffer, pCurrent->ImageName.Length);
             for (const auto & processName : processList)
@@ -77,7 +83,7 @@ NTSTATUS TaskManagerDetector::TimedNtQuerySystemInformation(IN SYSTEM_INFORMATIO
             }
             pCurrent = reinterpret_cast<PMY_SYSTEM_PROCESS_INFORMATION>((reinterpret_cast<PUCHAR>(pCurrent + pCurrent->NextEntryOffset)));
         }
-    }*/
+    }
 
-    return NTSTATUS();
+    return status;
 }

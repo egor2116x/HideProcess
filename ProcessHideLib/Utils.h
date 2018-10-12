@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "Common.h"
 
+std::wstring GetFullProcessPath();
+bool LoadMultiString(const WCHAR * valueName, std::vector<std::wstring> & processExceptionList);
 std::wstring GetFullCurrentProcessPath();
 std::wstring GetFullCurrentProcessPathToFolder();
 std::wstring GetCurrentProcessName();

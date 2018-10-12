@@ -51,6 +51,12 @@
     <ClInclude Include="mhook-master\disasm-lib\misc.h">
       <Filter>mhooks</Filter>
     </ClInclude>
+    <ClInclude Include="..\ProcessHideLib\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ProcessHideLib\LogWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="mhook-master\disasm-lib\disasm_x86.c">
       <Filter>mhooks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProcessHideLib\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProcessHideLib\LogWriter.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
