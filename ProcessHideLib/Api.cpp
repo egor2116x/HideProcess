@@ -288,6 +288,7 @@ BOOL Api::Inject()
         }
 
     }
+
     return TRUE;
 }
 

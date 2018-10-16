@@ -5,6 +5,8 @@
 
 HMODULE hCurrentModule = nullptr;
 HMODULE hNtDll = nullptr;
+HMODULE hKernel32 = nullptr;
+HMODULE userenv = nullptr;
 
 bool IsProcessNeedHide(const std::wstring & processName)
 {
@@ -36,6 +38,16 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:     
         if ((hNtDll = LoadLibraryA("ntdll.dll")) == NULL)
+        {
+            return FALSE;
+        }
+
+        if ((hKernel32 = LoadLibraryA("Kernel32.dll")) == NULL)
+        {
+            return FALSE;
+        }
+
+        if ((userenv = LoadLibraryA("Userenv.dll")) == NULL)
         {
             return FALSE;
         }

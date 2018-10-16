@@ -15,6 +15,9 @@
 #include <vector>
 #include <string>
 #include "mhook-master\mhook-lib\mhook.h"
+#include <TlHelp32.h>
+#include <Wtsapi32.h>
+#include <userenv.h>
 
 
 

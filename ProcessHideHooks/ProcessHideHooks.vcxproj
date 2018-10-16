@@ -100,7 +100,7 @@
       <ProgramDatabaseFile>$(OutDir)$(Platform)\$(TargetName).pdb</ProgramDatabaseFile>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>Dbghelp.lib;Rpcrt4.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Wtsapi32.lib;Dbghelp.lib;Rpcrt4.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +115,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Dbghelp.lib;Rpcrt4.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Wtsapi32.lib;Dbghelp.lib;Rpcrt4.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
       <ProgramDatabaseFile>$(OutDir)$(Platform)\$(TargetName).pdb</ProgramDatabaseFile>
       <IgnoreAllDefaultLibraries>

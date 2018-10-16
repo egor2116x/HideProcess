@@ -48,8 +48,17 @@ COMMANDS ParseUserInput(const std::wstring & userInput)
     return COMMANDS::UNKNOWN;
 }
 
-int main()
+int main(int argc, wchar_t ** argv)
 {
+    if (argc > 1 && !_wcsicmp(argv[1], L"inject")) // started user process for inject dll from service
+    {
+        if (!Api::Inject())
+        {
+            return -1;
+        }
+        return 0;
+    }
+
     std::vector<std::wstring> setProcessList = {L"TestHideProcess.exe", L"calc.exe", L"notepad.exe"};
     std::vector<std::wstring> getProcessList;
     auto & client = RpcClient::GetInstance();
