@@ -10,6 +10,7 @@ namespace Api
     BOOL Install(const std::wstring & dllSourceDirPathX86, const std::wstring & dllSourceDirPathX64);
     BOOL Uninstall();
     BOOL Inject();
+    UINT InjectIntoUserSession(LPVOID pParam);
 
     //service managament function list
     //gen exception std::runtime_error

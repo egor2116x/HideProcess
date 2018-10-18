@@ -6,7 +6,7 @@
 #include "Utils.h"
 #include "Service.h"
 #include "ExceptionService.h"
-
+#include "Api.h"
 
 int wmain(int argc, TCHAR* argv[])
 {

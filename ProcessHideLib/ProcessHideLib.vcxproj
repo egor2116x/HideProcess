@@ -117,7 +117,7 @@
     </Link>
     <Lib>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>Dbghelp.lib;Rpcrt4.lib;</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Wtsapi32.lib;Dbghelp.lib;Rpcrt4.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,7 +134,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>Dbghelp.lib;Rpcrt4.lib;</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Wtsapi32.lib;Dbghelp.lib;Rpcrt4.lib;</AdditionalDependencies>
       <OutputFile>$(OutDir)$(Platform)\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>

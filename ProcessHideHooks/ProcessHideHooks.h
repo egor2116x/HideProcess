@@ -7,5 +7,6 @@
 #endif 
 
 bool PROCESSHIDELIBRARY_EXPORTS Start();
+bool PROCESSHIDELIBRARY_EXPORTS StartRundll();
 bool InstallHooks();
 

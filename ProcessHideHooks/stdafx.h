@@ -18,6 +18,7 @@
 #include <TlHelp32.h>
 #include <Wtsapi32.h>
 #include <userenv.h>
+#include <shellapi.h>
 
 
 

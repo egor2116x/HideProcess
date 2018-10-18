@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "LogWriter.h"
 #include "RpcUtils.h"
+#include "Api.h"
 
 SERVICE_STATUS        Service::m_ServiceStatus;
 SERVICE_STATUS_HANDLE Service::m_ServiceStatusHandle = NULL;

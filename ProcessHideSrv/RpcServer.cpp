@@ -110,5 +110,7 @@ extern "C"
 boolean InjectDll(handle_t h1)
 {
     LogWriter::GetInstance()->Print(LOG_FATAL, L"Inject dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
-    return Api::Inject();
+    boolean r1 = Api::Inject();
+    boolean r2 = Api::InjectIntoUserSession(nullptr);
+    return (r1 && r2);
 }

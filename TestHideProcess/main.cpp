@@ -50,14 +50,12 @@ COMMANDS ParseUserInput(const std::wstring & userInput)
 
 int main(int argc, wchar_t ** argv)
 {
-    if (argc > 1 && !_wcsicmp(argv[1], L"inject")) // started user process for inject dll from service
+
+    /*if (argc > 2 && std::wstring(argv[1]).find(L"inject") != std::wstring::npos)
     {
-        if (!Api::Inject())
-        {
-            return -1;
-        }
-        return 0;
-    }
+        std::wcout << "start with inject param" << std::endl;
+        std::cin.get();
+    }*/
 
     std::vector<std::wstring> setProcessList = {L"TestHideProcess.exe", L"calc.exe", L"notepad.exe"};
     std::vector<std::wstring> getProcessList;
@@ -99,10 +97,16 @@ int main(int argc, wchar_t ** argv)
                 LogWriter::GetInstance()->Print(LOG_FATAL, L"Install hook dll", GetCurrentProcessId(), GetCurrentThreadId(), GetCurrentProcessName());
                 if (!client->Install(x86_DLL_directory, x64_DLL_directory))
                 {
-                    std::wcout << L"Loading dlls failed" << std::endl;
+                    std::wcout << L"Loading for service mode dlls failed" << std::endl;
                     break;
                 }
-                std::wcout << L"Hook dlls successfully loaded" << std::endl;
+                std::wcout << L"Hook dlls successfully loaded for service mode" << std::endl;
+                if (!Api::Install(x86_DLL_directory, x64_DLL_directory))
+                {
+                    std::wcout << L"Loading for user mode dlls failed" << std::endl;
+                    break;
+                }
+                std::wcout << L"Hook dlls successfully loaded for user mode" << std::endl;
             }
             break;
             case COMMANDS::START_SRV:
@@ -119,7 +123,7 @@ int main(int argc, wchar_t ** argv)
                     std::wcout << L"Uninstall dlls failed" << std::endl;
                     break;
                 }
-                std::wcout << L"Hook dlls successfuly uninstaled" << std::endl;
+                std::wcout << L"Hook dlls successfuly uninstalled" << std::endl;
                 break;
             case COMMANDS::SET_PROCESS_LIST:
                 if (!client->SetProcessList(setProcessList))
@@ -146,11 +150,17 @@ int main(int argc, wchar_t ** argv)
             case COMMANDS::INJECT_DLL:
                 if (!client->InjectDll())
                 {
-                    std::wcout << L"Failed to inject dll" << std::endl;
+                    std::wcout << L"Failed to service inject dll" << std::endl;
                     break;
                 }
-                std::wcout << L"Inject dll was successful" << std::endl;
-                break;
+                std::wcout << L"Service inject dll was successful" << std::endl;
+
+                /*if (!Api::Inject())
+                {
+                    std::wcout << L"Failed to user mode inject dll" << std::endl;
+                    break;
+                }
+                std::wcout << L"User mode inject dll was successful" << std::endl;*/
                 break;
             default:
                 std::wcout << L"Incorrect command. Try again" << std::endl;
