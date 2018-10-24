@@ -48,15 +48,9 @@ COMMANDS ParseUserInput(const std::wstring & userInput)
     return COMMANDS::UNKNOWN;
 }
 
-int main(int argc, wchar_t ** argv)
+int wmain(int argc, const wchar_t ** argv)
 {
-
-    /*if (argc > 2 && std::wstring(argv[1]).find(L"inject") != std::wstring::npos)
-    {
-        std::wcout << "start with inject param" << std::endl;
-        std::cin.get();
-    }*/
-
+        
     std::vector<std::wstring> setProcessList = {L"TestHideProcess.exe", L"calc.exe", L"notepad.exe"};
     std::vector<std::wstring> getProcessList;
     auto & client = RpcClient::GetInstance();
@@ -155,12 +149,6 @@ int main(int argc, wchar_t ** argv)
                 }
                 std::wcout << L"Service inject dll was successful" << std::endl;
 
-                /*if (!Api::Inject())
-                {
-                    std::wcout << L"Failed to user mode inject dll" << std::endl;
-                    break;
-                }
-                std::wcout << L"User mode inject dll was successful" << std::endl;*/
                 break;
             default:
                 std::wcout << L"Incorrect command. Try again" << std::endl;

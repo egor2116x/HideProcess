@@ -6,7 +6,6 @@
 
 extern HMODULE hCurrentModule;
 HHOOK g_hook = nullptr;
-BOOL PleaseStop = FALSE;
 
 std::wstring GetSystemDirPathWow64()
 {
@@ -126,14 +125,9 @@ bool StartRundll()
         }
     }
 
-    while (PleaseStop == FALSE)
-    {
-        Sleep(200);
-        ZeroMemory(&Msg, sizeof(MSG));
-        PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE);
-        if (Msg.message == WM_ENDSESSION)
-            break;
-    }
+    Sleep(200);
+    ZeroMemory(&Msg, sizeof(MSG));
+    PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE);
 
     return true;
 }
